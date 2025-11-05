@@ -8,8 +8,6 @@
   },
   "postCreateCommand": "sudo apt-get update && sudo apt-get install -y mysql-client",
   "forwardPorts": [3306],
-
-  // Export DB connection info into the container env
   "remoteEnv": {
     "MYSQL_HOST": "mysql",
     "MYSQL_PORT": "3306",
@@ -17,8 +15,6 @@
     "MYSQL_USER": "app",
     "MYSQL_PASSWORD": "apppw"
   },
-
-  // Auto-install VS Code extensions + pre-set SQLTools connection
   "customizations": {
     "vscode": {
       "extensions": [
@@ -26,21 +22,19 @@
         "mtxr.sqltools-driver-mysql"
       ],
       "settings": {
-        // Pre-provision a connection in SQLTools (uses env vars above)
         "sqltools.connections": [
           {
             "name": "mysql@codespace",
             "driver": "MySQL",
             "server": "${env:MYSQL_HOST}",
-            "port": ${env:MYSQL_PORT},
+            "port": "${env:MYSQL_PORT}",
             "database": "${env:MYSQL_DATABASE}",
             "username": "${env:MYSQL_USER}",
             "password": "${env:MYSQL_PASSWORD}",
-            "previewLimit": 50,
+            "previewLimit": 100,
             "connectionTimeout": 30
           }
         ],
-        // Make SQLTools use this connection by default (optional)
         "sqltools.useNodeRuntime": "bundled"
       }
     }
