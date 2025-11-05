@@ -1,0 +1,16 @@
+{
+  "sqltools.connections": [
+    {
+      "name": "mysql@codespace",
+      "driver": "MySQL",
+      "server": "mysql",
+      "port": 3306,
+      "database": "appdb",
+      "username": "app",
+      "password": "apppw",
+      "previewLimit": 100,
+      "connectionTimeout": 30
+    }
+  ],
+  "sqltools.useNodeRuntime": "bundled"
+}
