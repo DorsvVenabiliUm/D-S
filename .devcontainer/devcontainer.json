@@ -1,0 +1,19 @@
+{
+  "name": "mysql-codespace",
+  "dockerComposeFile": "./docker-compose.yml",
+  "service": "dev",
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+  "features": {
+    "ghcr.io/devcontainers/features/common-utils:2": {}
+  },
+  "postCreateCommand": "sudo apt-get update && sudo apt-get install -y mysql-client",
+  "forwardPorts": [3306],
+  "remoteEnv": {
+    "MYSQL_HOST": "mysql",
+    "MYSQL_PORT": "3306",
+    "MYSQL_DATABASE": "appdb",
+    "MYSQL_USER": "app",
+    "MYSQL_PASSWORD": "apppw",
+    "MYSQL_ROOT_PASSWORD": "root"
+  }
+}
