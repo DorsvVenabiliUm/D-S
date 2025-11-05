@@ -6,7 +6,8 @@
   "features": {
     "ghcr.io/devcontainers/features/common-utils:2": {}
   },
-  "postCreateCommand": "sudo apt-get update && sudo apt-get install -y mysql-client",
+  "postCreateCommand": "sudo apt-get update && sudo apt-get install -y mysql-client && /bin/bash -lc 'mkdir -p .devcontainer/scripts && chmod +x .devcontainer/scripts/init-db.sh || true'",
+  "postStartCommand": "/bin/bash -lc '.devcontainer/scripts/init-db.sh'",
   "forwardPorts": [3306],
   "remoteEnv": {
     "MYSQL_HOST": "mysql",
@@ -26,11 +27,11 @@
           {
             "name": "mysql@codespace",
             "driver": "MySQL",
-            "server": "${env:MYSQL_HOST}",
-            "port": "${env:MYSQL_PORT}",
-            "database": "${env:MYSQL_DATABASE}",
-            "username": "${env:MYSQL_USER}",
-            "password": "${env:MYSQL_PASSWORD}",
+            "server": "mysql",
+            "port": 3306,
+            "database": "appdb",
+            "username": "app",
+            "password": "apppw",
             "previewLimit": 100,
             "connectionTimeout": 30
           }
